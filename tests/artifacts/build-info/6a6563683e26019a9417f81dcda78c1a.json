@@ -1,0 +1,926 @@
+{
+	"id": "6a6563683e26019a9417f81dcda78c1a",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.23",
+	"solcLongVersion": "0.8.23+commit.f704f362",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"tests/IERC6551Registry.sol": {
+				"content": "interface IERC6551Registry {\r\n    /**\r\n     * @dev The registry MUST emit the ERC6551AccountCreated event upon successful account creation.\r\n     */\r\n    event ERC6551AccountCreated(\r\n        address account,\r\n        address indexed implementation,\r\n        bytes32 salt,\r\n        uint256 chainId,\r\n        address indexed tokenContract,\r\n        uint256 indexed tokenId\r\n    );\r\n\r\n    /**\r\n     * @dev The registry MUST revert with AccountCreationFailed error if the create2 operation fails.\r\n     */\r\n    error AccountCreationFailed();\r\n\r\n    /**\r\n     * @dev Creates a token bound account for a non-fungible token.\r\n     *\r\n     * If account has already been created, returns the account address without calling create2.\r\n     *\r\n     * Emits ERC6551AccountCreated event.\r\n     *\r\n     * @return account The address of the token bound account\r\n     */\r\n    function createAccount(\r\n        address implementation,\r\n        bytes32 salt,\r\n        uint256 chainId,\r\n        address tokenContract,\r\n        uint256 tokenId\r\n    ) external returns (address account);\r\n\r\n    /**\r\n     * @dev Returns the computed token bound account address for a non-fungible token.\r\n     *\r\n     * @return account The address of the token bound account\r\n     */\r\n    function account(\r\n        address implementation,\r\n        bytes32 salt,\r\n        uint256 chainId,\r\n        address tokenContract,\r\n        uint256 tokenId\r\n    ) external view returns (address account);\r\n}"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			}
+		}
+	},
+	"output": {
+		"contracts": {
+			"tests/IERC6551Registry.sol": {
+				"IERC6551Registry": {
+					"abi": [
+						{
+							"inputs": [],
+							"name": "AccountCreationFailed",
+							"type": "error"
+						},
+						{
+							"anonymous": false,
+							"inputs": [
+								{
+									"indexed": false,
+									"internalType": "address",
+									"name": "account",
+									"type": "address"
+								},
+								{
+									"indexed": true,
+									"internalType": "address",
+									"name": "implementation",
+									"type": "address"
+								},
+								{
+									"indexed": false,
+									"internalType": "bytes32",
+									"name": "salt",
+									"type": "bytes32"
+								},
+								{
+									"indexed": false,
+									"internalType": "uint256",
+									"name": "chainId",
+									"type": "uint256"
+								},
+								{
+									"indexed": true,
+									"internalType": "address",
+									"name": "tokenContract",
+									"type": "address"
+								},
+								{
+									"indexed": true,
+									"internalType": "uint256",
+									"name": "tokenId",
+									"type": "uint256"
+								}
+							],
+							"name": "ERC6551AccountCreated",
+							"type": "event"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "implementation",
+									"type": "address"
+								},
+								{
+									"internalType": "bytes32",
+									"name": "salt",
+									"type": "bytes32"
+								},
+								{
+									"internalType": "uint256",
+									"name": "chainId",
+									"type": "uint256"
+								},
+								{
+									"internalType": "address",
+									"name": "tokenContract",
+									"type": "address"
+								},
+								{
+									"internalType": "uint256",
+									"name": "tokenId",
+									"type": "uint256"
+								}
+							],
+							"name": "account",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "account",
+									"type": "address"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "implementation",
+									"type": "address"
+								},
+								{
+									"internalType": "bytes32",
+									"name": "salt",
+									"type": "bytes32"
+								},
+								{
+									"internalType": "uint256",
+									"name": "chainId",
+									"type": "uint256"
+								},
+								{
+									"internalType": "address",
+									"name": "tokenContract",
+									"type": "address"
+								},
+								{
+									"internalType": "uint256",
+									"name": "tokenId",
+									"type": "uint256"
+								}
+							],
+							"name": "createAccount",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "account",
+									"type": "address"
+								}
+							],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"errors": {
+							"AccountCreationFailed()": [
+								{
+									"details": "The registry MUST revert with AccountCreationFailed error if the create2 operation fails."
+								}
+							]
+						},
+						"events": {
+							"ERC6551AccountCreated(address,address,bytes32,uint256,address,uint256)": {
+								"details": "The registry MUST emit the ERC6551AccountCreated event upon successful account creation."
+							}
+						},
+						"kind": "dev",
+						"methods": {
+							"account(address,bytes32,uint256,address,uint256)": {
+								"details": "Returns the computed token bound account address for a non-fungible token.",
+								"returns": {
+									"account": "The address of the token bound account"
+								}
+							},
+							"createAccount(address,bytes32,uint256,address,uint256)": {
+								"details": "Creates a token bound account for a non-fungible token. If account has already been created, returns the account address without calling create2. Emits ERC6551AccountCreated event.",
+								"returns": {
+									"account": "The address of the token bound account"
+								}
+							}
+						},
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"account(address,bytes32,uint256,address,uint256)": "246a0021",
+							"createAccount(address,bytes32,uint256,address,uint256)": "8a54c52f"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.23+commit.f704f362\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"AccountCreationFailed\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"salt\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"chainId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"tokenContract\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"ERC6551AccountCreated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"salt\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"chainId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"tokenContract\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"account\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"salt\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"chainId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"tokenContract\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"createAccount\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"errors\":{\"AccountCreationFailed()\":[{\"details\":\"The registry MUST revert with AccountCreationFailed error if the create2 operation fails.\"}]},\"events\":{\"ERC6551AccountCreated(address,address,bytes32,uint256,address,uint256)\":{\"details\":\"The registry MUST emit the ERC6551AccountCreated event upon successful account creation.\"}},\"kind\":\"dev\",\"methods\":{\"account(address,bytes32,uint256,address,uint256)\":{\"details\":\"Returns the computed token bound account address for a non-fungible token.\",\"returns\":{\"account\":\"The address of the token bound account\"}},\"createAccount(address,bytes32,uint256,address,uint256)\":{\"details\":\"Creates a token bound account for a non-fungible token. If account has already been created, returns the account address without calling create2. Emits ERC6551AccountCreated event.\",\"returns\":{\"account\":\"The address of the token bound account\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"tests/IERC6551Registry.sol\":\"IERC6551Registry\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"tests/IERC6551Registry.sol\":{\"keccak256\":\"0xbbfa41ec8d9f2a24a2025a5c314e43ef32a9b5f317d0b839089c17f45fa0439b\",\"urls\":[\"bzz-raw://0156aa5f71d45bd9f69e9b02e3aa917c9ce160bc474c4fd11b1e1f49f0c12c1d\",\"dweb:/ipfs/QmfZENNGoWXpynBrA9AotH28Ciyi7Gx5TJwxjfkiV8TXkJ\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {},
+						"version": 1
+					}
+				}
+			}
+		},
+		"errors": [
+			{
+				"component": "general",
+				"errorCode": "1878",
+				"formattedMessage": "Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing \"SPDX-License-Identifier: <SPDX-License>\" to each source file. Use \"SPDX-License-Identifier: UNLICENSED\" for non-open-source code. Please see https://spdx.org for more information.\n--> tests/IERC6551Registry.sol\n\n",
+				"message": "SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing \"SPDX-License-Identifier: <SPDX-License>\" to each source file. Use \"SPDX-License-Identifier: UNLICENSED\" for non-open-source code. Please see https://spdx.org for more information.",
+				"severity": "warning",
+				"sourceLocation": {
+					"end": -1,
+					"file": "tests/IERC6551Registry.sol",
+					"start": -1
+				},
+				"type": "Warning"
+			},
+			{
+				"component": "general",
+				"errorCode": "3420",
+				"formattedMessage": "Warning: Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.8.23;\"\n--> tests/IERC6551Registry.sol\n\n",
+				"message": "Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.8.23;\"",
+				"severity": "warning",
+				"sourceLocation": {
+					"end": -1,
+					"file": "tests/IERC6551Registry.sol",
+					"start": -1
+				},
+				"type": "Warning"
+			}
+		],
+		"sources": {
+			"tests/IERC6551Registry.sol": {
+				"ast": {
+					"absolutePath": "tests/IERC6551Registry.sol",
+					"exportedSymbols": {
+						"IERC6551Registry": [
+							51
+						]
+					},
+					"id": 52,
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"canonicalName": "IERC6551Registry",
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"fullyImplemented": false,
+							"id": 51,
+							"linearizedBaseContracts": [
+								51
+							],
+							"name": "IERC6551Registry",
+							"nameLocation": "10:16:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"anonymous": false,
+									"documentation": {
+										"id": 1,
+										"nodeType": "StructuredDocumentation",
+										"src": "34:114:0",
+										"text": " @dev The registry MUST emit the ERC6551AccountCreated event upon successful account creation."
+									},
+									"eventSelector": "79f19b3655ee38b1ce526556b7731a20c8f218fbda4a3990b6cc4172fdf88722",
+									"id": 15,
+									"name": "ERC6551AccountCreated",
+									"nameLocation": "160:21:0",
+									"nodeType": "EventDefinition",
+									"parameters": {
+										"id": 14,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 3,
+												"indexed": false,
+												"mutability": "mutable",
+												"name": "account",
+												"nameLocation": "200:7:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 15,
+												"src": "192:15:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 2,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "192:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 5,
+												"indexed": true,
+												"mutability": "mutable",
+												"name": "implementation",
+												"nameLocation": "234:14:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 15,
+												"src": "218:30:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 4,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "218:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 7,
+												"indexed": false,
+												"mutability": "mutable",
+												"name": "salt",
+												"nameLocation": "267:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 15,
+												"src": "259:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes32",
+													"typeString": "bytes32"
+												},
+												"typeName": {
+													"id": 6,
+													"name": "bytes32",
+													"nodeType": "ElementaryTypeName",
+													"src": "259:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes32",
+														"typeString": "bytes32"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 9,
+												"indexed": false,
+												"mutability": "mutable",
+												"name": "chainId",
+												"nameLocation": "290:7:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 15,
+												"src": "282:15:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 8,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "282:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 11,
+												"indexed": true,
+												"mutability": "mutable",
+												"name": "tokenContract",
+												"nameLocation": "324:13:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 15,
+												"src": "308:29:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 10,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "308:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 13,
+												"indexed": true,
+												"mutability": "mutable",
+												"name": "tokenId",
+												"nameLocation": "364:7:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 15,
+												"src": "348:23:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 12,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "348:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "181:197:0"
+									},
+									"src": "154:225:0"
+								},
+								{
+									"documentation": {
+										"id": 16,
+										"nodeType": "StructuredDocumentation",
+										"src": "387:115:0",
+										"text": " @dev The registry MUST revert with AccountCreationFailed error if the create2 operation fails."
+									},
+									"errorSelector": "20188a59",
+									"id": 18,
+									"name": "AccountCreationFailed",
+									"nameLocation": "514:21:0",
+									"nodeType": "ErrorDefinition",
+									"parameters": {
+										"id": 17,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "535:2:0"
+									},
+									"src": "508:30:0"
+								},
+								{
+									"documentation": {
+										"id": 19,
+										"nodeType": "StructuredDocumentation",
+										"src": "546:309:0",
+										"text": " @dev Creates a token bound account for a non-fungible token.\n If account has already been created, returns the account address without calling create2.\n Emits ERC6551AccountCreated event.\n @return account The address of the token bound account"
+									},
+									"functionSelector": "8a54c52f",
+									"id": 34,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "createAccount",
+									"nameLocation": "870:13:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 30,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 21,
+												"mutability": "mutable",
+												"name": "implementation",
+												"nameLocation": "902:14:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 34,
+												"src": "894:22:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 20,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "894:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 23,
+												"mutability": "mutable",
+												"name": "salt",
+												"nameLocation": "935:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 34,
+												"src": "927:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes32",
+													"typeString": "bytes32"
+												},
+												"typeName": {
+													"id": 22,
+													"name": "bytes32",
+													"nodeType": "ElementaryTypeName",
+													"src": "927:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes32",
+														"typeString": "bytes32"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 25,
+												"mutability": "mutable",
+												"name": "chainId",
+												"nameLocation": "958:7:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 34,
+												"src": "950:15:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 24,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "950:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 27,
+												"mutability": "mutable",
+												"name": "tokenContract",
+												"nameLocation": "984:13:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 34,
+												"src": "976:21:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 26,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "976:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 29,
+												"mutability": "mutable",
+												"name": "tokenId",
+												"nameLocation": "1016:7:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 34,
+												"src": "1008:15:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 28,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "1008:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "883:147:0"
+									},
+									"returnParameters": {
+										"id": 33,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 32,
+												"mutability": "mutable",
+												"name": "account",
+												"nameLocation": "1057:7:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 34,
+												"src": "1049:15:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 31,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1049:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1048:17:0"
+									},
+									"scope": 51,
+									"src": "861:205:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 35,
+										"nodeType": "StructuredDocumentation",
+										"src": "1074:171:0",
+										"text": " @dev Returns the computed token bound account address for a non-fungible token.\n @return account The address of the token bound account"
+									},
+									"functionSelector": "246a0021",
+									"id": 50,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "account",
+									"nameLocation": "1260:7:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 46,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 37,
+												"mutability": "mutable",
+												"name": "implementation",
+												"nameLocation": "1286:14:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 50,
+												"src": "1278:22:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 36,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1278:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 39,
+												"mutability": "mutable",
+												"name": "salt",
+												"nameLocation": "1319:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 50,
+												"src": "1311:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes32",
+													"typeString": "bytes32"
+												},
+												"typeName": {
+													"id": 38,
+													"name": "bytes32",
+													"nodeType": "ElementaryTypeName",
+													"src": "1311:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes32",
+														"typeString": "bytes32"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 41,
+												"mutability": "mutable",
+												"name": "chainId",
+												"nameLocation": "1342:7:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 50,
+												"src": "1334:15:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 40,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "1334:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 43,
+												"mutability": "mutable",
+												"name": "tokenContract",
+												"nameLocation": "1368:13:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 50,
+												"src": "1360:21:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 42,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1360:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 45,
+												"mutability": "mutable",
+												"name": "tokenId",
+												"nameLocation": "1400:7:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 50,
+												"src": "1392:15:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 44,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "1392:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1267:147:0"
+									},
+									"returnParameters": {
+										"id": 49,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 48,
+												"mutability": "mutable",
+												"name": "account",
+												"nameLocation": "1446:7:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 50,
+												"src": "1438:15:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 47,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1438:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1437:17:0"
+									},
+									"scope": 51,
+									"src": "1251:204:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								}
+							],
+							"scope": 52,
+							"src": "0:1458:0",
+							"usedErrors": [
+								18
+							],
+							"usedEvents": [
+								15
+							]
+						}
+					],
+					"src": "0:1458:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}
